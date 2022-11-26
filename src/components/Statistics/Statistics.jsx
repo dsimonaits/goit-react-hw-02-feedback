@@ -1,36 +1,51 @@
 import PropTypes from 'prop-types';
+import { ListItem } from './Statistics.styled';
+import { List } from './Statistics.styled';
+import { Span } from './Statistics.styled';
+import { SpanFeedback } from './Statistics.styled';
 
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   if ((good || neutral || bad) === 0) {
     return (
-      <ul>
-        <li>
+      <List>
+        <ListItem>
           <p>There is no feedback</p>
-        </li>
-      </ul>
+        </ListItem>
+      </List>
     );
   }
   return (
     <>
-      <ul>
-        <li>
-          <p>Good: {good}</p>
-        </li>
-        <li>
-          <p>Neutral: {neutral}</p>
-        </li>
-        <li>
-          <p>Bad: {bad}</p>
-        </li>
-      </ul>
-      <ul>
-        <li>
+      <List>
+        <ListItem>
+          <p>
+            <Span color="green">Good:</Span> {good}
+          </p>
+        </ListItem>
+        <ListItem>
+          <p>
+            <Span color="yellow">Neutral:</Span> {neutral}
+          </p>
+        </ListItem>
+        <ListItem>
+          <p>
+            <Span color="red">Bad:</Span> {bad}
+          </p>
+        </ListItem>
+      </List>
+      <List>
+        <ListItem>
           <p>Total: {total}</p>
-        </li>
-        <li>
-          <p>Positive feedback: {positivePercentage}%</p>
-        </li>
-      </ul>
+        </ListItem>
+        <ListItem>
+          <p>
+            <SpanFeedback mood={positivePercentage}>
+              Positive feedback:
+            </SpanFeedback>{' '}
+            {positivePercentage}%
+          </p>
+        </ListItem>
+      </List>
     </>
   );
 };
