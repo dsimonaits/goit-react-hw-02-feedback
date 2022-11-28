@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Section from './Section';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
-
+import { List } from './Statistics/Statistics.styled';
 class App extends Component {
   state = {
     good: 0,
@@ -33,6 +33,7 @@ class App extends Component {
     const good = this.state.good;
     const neutral = this.state.neutral;
     const bad = this.state.bad;
+    const emptyState = this.countTotalFeedback() === 0;
     return (
       <>
         <Section title="Please leave feedback">
@@ -42,13 +43,21 @@ class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
+          {emptyState ? (
+            <List>
+              <li>
+                <p>There is no feedback</p>
+              </li>
+            </List>
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          )}
         </Section>
       </>
     );
