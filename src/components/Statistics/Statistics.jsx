@@ -5,15 +5,6 @@ import { Span } from './Statistics.styled';
 import { SpanFeedback } from './Statistics.styled';
 
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
-  if ((good || neutral || bad) === 0) {
-    return (
-      <List>
-        <ListItem>
-          <p>There is no feedback</p>
-        </ListItem>
-      </List>
-    );
-  }
   return (
     <>
       <List>
